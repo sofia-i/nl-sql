@@ -107,7 +107,7 @@ def fill_tables(conn_string):
     """
 
     rollercoaster_data = [
-
+        
     ]
     rollercoaster_insert_str = """
     """
