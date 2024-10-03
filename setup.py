@@ -100,7 +100,8 @@ def create_tables(conn_string):
 
 def fill_tables(conn_string):
     station_data = [
-        
+        (1, "3 Rollercoaster Rd"),
+        (2, "2 Fun Way")
     ]
     station_insert_str = """
     INSERT INTO Station (StationID, Location)
@@ -114,15 +115,21 @@ def fill_tables(conn_string):
     """
 
     foodstall_data = [
-
+        (1, "Hamburgers, Hot Dogs, Soda"),
+        (2, "Salads, Tacos")
     ]
     foodstall_insert_str = """
+    INSERT INTO FoodStall (StationID, AvailableItems)
+    VALUES (%s, %s)
     """
 
     employee_data = [
-
+        (1, "3 Rollercoaster Rd", "09:00:00", "5:00:00"),
+        (2, "2 Fun Way", "12:00:00", "3:00:00")
     ]
     employee_insert_str = """
+    INSERT INTO Employee (EmployeeID, StationLocation, TimeIn, TimeOut)
+    VALUES (%s, %s, %s, %s)
     """
 
     guest_data = [
@@ -133,8 +140,8 @@ def fill_tables(conn_string):
 
     with psycopg2.connect(conn_string) as conn:
         cursor = conn.cursor()
-        # cursor.executemany(station_insert_str, station_data)
+        cursor.executemany(station_insert_str, station_data)
         # cursor.executemany(rollercoaster_insert_str, rollercoaster_data)
-        # cursor.executemany(foodstall_insert_str, foodstall_data)
-        # cursor.executemany(employee_insert_str, employee_data)
+        cursor.executemany(foodstall_insert_str, foodstall_data)
+        cursor.executemany(employee_insert_str, employee_data)
         # cursor.executemany(guest_insert_str, guest_data)
