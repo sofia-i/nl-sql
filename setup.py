@@ -62,7 +62,7 @@ def create_station_table(conn_string):
         cursor = conn.cursor()
         cursor.execute(create_station_table_str)
 
-def create_tables():
+def create_tables(conn_string):
     create_rollercoaster = """
         CREATE TABLE Rollercoaster (
         ID INTEGER PRIMARY KEY,
@@ -85,3 +85,45 @@ def create_tables():
     with psycopg2.connect(conn_string) as conn:
         cursor = conn.cursor()
         cursor.execute(create_guest)
+
+
+def fill_tables(conn_string):
+    station_data = [
+        
+    ]
+    station_insert_str = """
+    INSERT INTO Station (StationID, Location)
+    VALUES(%s, %s)
+    """
+
+    rollercoaster_data = [
+
+    ]
+    rollercoaster_insert_str = """
+    """
+
+    foodstall_data = [
+
+    ]
+    foodstall_insert_str = """
+    """
+
+    employee_data = [
+
+    ]
+    employee_insert_str = """
+    """
+
+    guest_data = [
+
+    ]
+    guest_insert_str = """
+    """
+
+    with psycopg2.connect(conn_string) as conn:
+        cursor = conn.cursor()
+        # cursor.executemany(station_insert_str, station_data)
+        # cursor.executemany(rollercoaster_insert_str, rollercoaster_data)
+        # cursor.executemany(foodstall_insert_str, foodstall_data)
+        # cursor.executemany(employee_insert_str, employee_data)
+        # cursor.executemany(guest_insert_str, guest_data)
