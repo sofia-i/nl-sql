@@ -23,7 +23,6 @@ def create_foodstall_table(conn_string):
     create_foodstall_table_str = """
     CREATE TABLE FoodStall(
     StationID      INT UNSIGNED PRIMARY KEY,
-    Location       TEXT,
     AvailableItems TEXT,
     FOREIGN KEY(StationID) REFERENCES Station(StationID)
         ON DELETE CASCADE
@@ -65,10 +64,12 @@ def create_station_table(conn_string):
 def create_tables(conn_string):
     create_rollercoaster = """
         CREATE TABLE Rollercoaster (
-        ID INTEGER PRIMARY KEY,
+        StationID      INT UNSIGNED PRIMARY KEY,
         WaitTime INTEGER,
-        Location TEXT,
-        NumRiders INTEGER
+        NumRiders INTEGER,
+        FOREIGN KEY(StationID) REFERENCES Station(StationID)
+            ON DELETE CASCADE
+            ON UPDATE RESTRICT
         ); 
     """
     with psycopg2.connect(conn_string) as conn:
