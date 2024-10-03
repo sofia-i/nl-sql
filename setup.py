@@ -89,8 +89,10 @@ def create_tables(conn_string):
         CREATE TABLE Guest (
         ID INTEGER PRIMARY KEY,
         Name TEXT,
-        RollercoasterID INT,
-        FOREIGN KEY (RollercoasterID) REFERENCES Rollercoaster(ID)
+        RollercoasterID INTEGER,
+        FOREIGN KEY (RollercoasterID) REFERENCES Rollercoaster(StationID)
+            ON DELETE CASCADE
+            ON UPDATE RESTRICT
         );
     """
     with psycopg2.connect(conn_string) as conn:
@@ -101,7 +103,9 @@ def create_tables(conn_string):
 def fill_tables(conn_string):
     station_data = [
         (1, "3 Rollercoaster Rd"),
-        (2, "2 Fun Way")
+        (2, "2 Fun Way"),
+        (3, "51 Waverly Place"),
+        (4, "23 Oklahoma Drive") 
     ]
     station_insert_str = """
     INSERT INTO Station (StationID, Location)
@@ -109,9 +113,12 @@ def fill_tables(conn_string):
     """
 
     rollercoaster_data = [
-
+        (3, 15, 60),
+        (4, 27, 328)     
     ]
     rollercoaster_insert_str = """
+    INSERT INTO Rollercoaster (StationID, WaitTime, NumRiders)
+    VALUES (%s, %s, %s)
     """
 
     foodstall_data = [
@@ -133,15 +140,22 @@ def fill_tables(conn_string):
     """
 
     guest_data = [
+        (120958, "Maria Rodriguez", 3),
+        (904367, "Jose Ultman", 4),
+        (983257, "Marx Helion", 4),
+        (165835, "Abigail Ryan", 4),
+        (664287, "Joe Marion", 3)
 
     ]
     guest_insert_str = """
+    INSERT INTO Guest (ID, Name, RollerCoasterID)
+    VALUES(%s, %s, %s)
     """
 
     with psycopg2.connect(conn_string) as conn:
         cursor = conn.cursor()
         cursor.executemany(station_insert_str, station_data)
-        # cursor.executemany(rollercoaster_insert_str, rollercoaster_data)
+        cursor.executemany(rollercoaster_insert_str, rollercoaster_data)
         cursor.executemany(foodstall_insert_str, foodstall_data)
         cursor.executemany(employee_insert_str, employee_data)
-        # cursor.executemany(guest_insert_str, guest_data)
+        cursor.executemany(guest_insert_str, guest_data)
