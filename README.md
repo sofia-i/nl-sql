@@ -5,7 +5,7 @@ Natural Language SQL Project by Keanna and Sofia
 Our database holds information about the operation of an amusement park, keeping track of the rollercoasters, food stands, employees, and guests.
 
 ## Schema
-[*Picture of schema*]
+![Schema](resources/schema.png "Picture of schema")
 
 ## Sample Question (Successful)
 [*Sample question, SQL query, response that worked (if you have one)*]
