@@ -122,4 +122,16 @@ def print_table_contents():
 print_table_contents()
 
 # test request to gpt
-sql_gpt_query(conn_string, question_str="What are all of the employees' ids?")
+# sql_gpt_query(conn_string, question_str="What are all of the employees' ids?")
+
+# We need at least 8 example questions (1 that worked, 1 that didn't work, 6 more)
+questions = [
+    "What are all of the employees ids?",
+    "When did employee 2 start work?",
+    "How many employees work at a food stall?",
+    "How many people are at each roller coaster?"
+]
+
+for question in questions:
+    sql_gpt_query(conn_string, question)
+    print()
