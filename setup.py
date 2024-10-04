@@ -166,3 +166,50 @@ def fill_tables(conn_string):
         cursor.executemany(foodstall_insert_str, foodstall_data)
         cursor.executemany(employee_insert_str, employee_data)
         cursor.executemany(guest_insert_str, guest_data)
+
+def get_create_table_strings():
+    return [
+        """
+        CREATE TABLE Station(
+        StationID   INT PRIMARY KEY,
+        Location    TEXT
+        );
+        """,
+        """
+        CREATE TABLE Rollercoaster (
+        StationID      INT PRIMARY KEY,
+        WaitTime INTEGER,
+        NumRiders INTEGER,
+        FOREIGN KEY(StationID) REFERENCES Station(StationID)
+            ON DELETE CASCADE
+            ON UPDATE RESTRICT
+        ); 
+        """,
+        """
+        CREATE TABLE FoodStall(
+        StationID      INT PRIMARY KEY,
+        AvailableItems TEXT,
+        FOREIGN KEY(StationID) REFERENCES Station(StationID)
+            ON DELETE CASCADE
+            ON UPDATE RESTRICT
+        );
+        """,
+        """
+        CREATE TABLE Employee(
+        EmployeeID      INT PRIMARY KEY,
+        StationLocation TEXT,         
+        TimeIn          TIME,
+        TimeOut         TIME
+        );
+        """,
+        """
+        CREATE TABLE Guest (
+        ID INTEGER PRIMARY KEY,
+        Name TEXT,
+        RollercoasterID INTEGER,
+        FOREIGN KEY (RollercoasterID) REFERENCES Rollercoaster(StationID)
+            ON DELETE CASCADE
+            ON UPDATE RESTRICT
+        );
+        """
+    ]
