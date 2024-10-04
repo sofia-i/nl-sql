@@ -32,7 +32,7 @@ def drop_tables(conn_string):
 def create_foodstall_table(conn_string):
     create_foodstall_table_str = """
     CREATE TABLE FoodStall(
-    StationID      INT UNSIGNED PRIMARY KEY,
+    StationID      INT PRIMARY KEY,
     AvailableItems TEXT,
     FOREIGN KEY(StationID) REFERENCES Station(StationID)
         ON DELETE CASCADE
@@ -48,7 +48,7 @@ def create_foodstall_table(conn_string):
 def create_employee_table(conn_string):
     create_employee_table_str = """
     CREATE TABLE Employee(
-    EmployeeID      INT UNSIGNED PRIMARY KEY,
+    EmployeeID      INT PRIMARY KEY,
     StationLocation TEXT,       
     TimeIn          TIME,
     TimeOut         TIME
@@ -62,7 +62,7 @@ def create_employee_table(conn_string):
 def create_station_table(conn_string):
     create_station_table_str = """
     CREATE TABLE Station(
-    StationID   INT UNSIGNED PRIMARY KEY,
+    StationID   INT PRIMARY KEY,
     Location    TEXT
     );
     """
@@ -72,9 +72,15 @@ def create_station_table(conn_string):
         cursor.execute(create_station_table_str)
 
 def create_tables(conn_string):
+    drop_tables(conn_string)
+
+    create_station_table(conn_string)
+    create_foodstall_table(conn_string)
+    create_employee_table(conn_string)
+
     create_rollercoaster = """
         CREATE TABLE Rollercoaster (
-        StationID      INT UNSIGNED PRIMARY KEY,
+        StationID      INT PRIMARY KEY,
         WaitTime INTEGER,
         NumRiders INTEGER,
         FOREIGN KEY(StationID) REFERENCES Station(StationID)
@@ -85,6 +91,7 @@ def create_tables(conn_string):
     with psycopg2.connect(conn_string) as conn:
         cursor = conn.cursor()
         cursor.execute(create_rollercoaster)
+    
     create_guest = """
         CREATE TABLE Guest (
         ID INTEGER PRIMARY KEY,

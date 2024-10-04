@@ -1,7 +1,7 @@
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
-import setup
+import setup, query
 
 # Load environment variables from the .env file
 load_dotenv()
@@ -13,12 +13,20 @@ org_id = os.getenv("ORG_ID")
 
 # setup for OpenAI
 client = OpenAI(
-    organization= org_id
+    organization= org_id,
+    api_key=api_key
 )
 
 # set up tables
 setup.create_tables(conn_string)
 setup.fill_tables(conn_string)
+
+# test that it worked by printing the tables
+query.print_rows(conn_string, "Station")
+query.print_rows(conn_string, "Rollercoaster")
+query.print_rows(conn_string, "FoodStall")
+query.print_rows(conn_string, "Employee")
+query.print_rows(conn_string, "Guest")
 
 # make request
 def query_gpt(query_str):
