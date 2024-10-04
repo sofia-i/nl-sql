@@ -24,10 +24,10 @@ def drop_tables(conn_string):
     with psycopg2.connect(conn_string) as conn:
         cursor = conn.cursor()
         cursor.execute(drop_employee_table)
-        cursor.execute(drop_foodstall_table)
-        cursor.execute(drop_station_table)
-        cursor.execute(drop_rollercoaster)
         cursor.execute(drop_guest)
+        cursor.execute(drop_foodstall_table)
+        cursor.execute(drop_rollercoaster)
+        cursor.execute(drop_station_table)
 
 def create_foodstall_table(conn_string):
     create_foodstall_table_str = """
