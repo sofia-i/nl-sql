@@ -2,7 +2,7 @@
 Natural Language SQL Project by Keanna and Sofia
 
 ## Database Description:
-[*One+ sentence description or purpose of your database*]
+Our database holds information about the operation of an amusement park, keeping track of the rollercoasters, food stands, employees, and guests.
 
 ## Schema
 [*Picture of schema*]
