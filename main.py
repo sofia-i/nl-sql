@@ -41,12 +41,12 @@ def construct_sql_gpt_query(question_str):
         sql_gpt_query += create_table + "\n"
 
     # Component 3: NLQ
-    sql_gpt_query += f"Question: {question_str}"
+    sql_gpt_query += f"Question: {question_str}\n"
 
     # Component 4: TODO(?) Add demonstrations
     sql_gpt_query += "Example questions and their sql queries:\n"
-    sql_gpt_query += "Question: How many food stalls are there?\n"
-    sql_gpt_query += "Query: SELECT COUNT(*) FROM FoodStall;\n"
+    sql_gpt_query += "\tQuestion: How many food stalls are there?\n"
+    sql_gpt_query += "\tQuery: SELECT COUNT(*) FROM FoodStall;\n"
 
     return sql_gpt_query
 
@@ -122,6 +122,7 @@ def print_table_contents():
     query.print_rows(conn_string, "FoodStall")
     query.print_rows(conn_string, "Employee")
     query.print_rows(conn_string, "Guest")
+    print()
 print_table_contents()
 
 # test request to gpt
