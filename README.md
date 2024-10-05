@@ -5,7 +5,7 @@ Natural Language SQL Project by Keanna and Sofia
 Our database holds information about the operation of an amusement park, keeping track of the rollercoasters, food stands, employees, and guests.
 
 ## Schema
-![Schema](resources/schema.png "Picture of schema")
+![Schema](resources/RollercoasterSchema.png "Picture of schema")
 
 ## Sample Question (Successful)
 Here's an example of a question-query-response that worked well. Here, ChatGPT successfully creates a table join and clearly interprets the value.
