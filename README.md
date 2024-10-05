@@ -125,5 +125,4 @@ Example 6.
 > *Response*: Based on the data provided from your database, there are **2 rollercoasters**.
 
 ## Prompting Strategies
-[*Describe somewhere which prompting strategies you tried and if you noticed a difference between them. (Note my post only does two of three - which is fine!).*]
-
+We tried to query the database using the zero shot technique and single-domain technique. For 7 of the 8 queries, the answer that was provided was the same using either method. However for the query on how many employees work at a food stall, the query where an example was provided gave the correct answer of 2, while the zero-shot query made an invalid comparison and returned that there were no employees working at a food stall. 
