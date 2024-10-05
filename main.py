@@ -95,7 +95,7 @@ def sql_gpt_query(conn_string, question_str):
     print("Friendly Response:", gpt_interpretation)
 
 # Load environment variables from the .env file
-load_dotenv()
+load_dotenv(override=True)
 
 # Access environment variables
 api_key = os.getenv("API_KEY")
@@ -129,7 +129,11 @@ questions = [
     "What are all of the employees ids?",
     "When did employee 2 start work?",
     "How many employees work at a food stall?",
-    "How many people are at each roller coaster?"
+    "How many people are at each roller coaster?",
+    "What are the names of the people who have ridden rollercoaster 3?",
+    "What is the wait time for rollercoaster 4?",
+    "What is the location of food stall 1?",
+    "How many rollercoasters are there?"
 ]
 
 for question in questions:
