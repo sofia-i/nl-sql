@@ -44,6 +44,9 @@ def construct_sql_gpt_query(question_str):
     sql_gpt_query += f"Question: {question_str}"
 
     # Component 4: TODO(?) Add demonstrations
+    sql_gpt_query += "Example questions and their sql queries:\n"
+    sql_gpt_query += "Question: How many food stalls are there?\n"
+    sql_gpt_query += "Query: SELECT COUNT(*) FROM FoodStall;\n"
 
     return sql_gpt_query
 
